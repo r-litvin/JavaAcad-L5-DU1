@@ -106,7 +106,12 @@ public class PlantList {
         }
     }
 
-    public void sortPlantList() {
+    public void sortPlantListByName() {
         Collections.sort(this.plantList, new PlantNameComparator());
+    }
+
+    public void sortPlantListByWatering(){
+        Collections.sort(this.plantList, new PlantWateringDateComparator());
+        //could implement if (){} else {} for reverse sorting here
     }
 }
