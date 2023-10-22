@@ -1,14 +1,22 @@
 package com.engeto.DU5;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PlantList {
     private List<Plant> plantList = new ArrayList<>();
 
-    public void PlantList(List<Plant> inputList){
+    public PlantList(List<Plant> inputList){
         this.plantList.addAll(inputList);
     }
+
+    public PlantList() {}
 
     public List<Plant> getPlantList(){
         return new ArrayList<>(this.plantList);
@@ -39,6 +47,49 @@ public class PlantList {
         } else {
             throw new PlantException("Error removing Plant from list. Plant '"
                     +plant+"' does not exist!");
+        }
+    }
+
+    public void readFromFile(String fileName) throws PlantException{
+        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(fileName)))) {
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                try {
+                    parseLine(line);
+                } catch (PlantException exception){
+                    throw new PlantException("Could not parse line: "+exception.getLocalizedMessage());
+                }
+
+            }
+        } catch (FileNotFoundException exception){
+            throw new PlantException("File: '"+fileName+"' not found! "+ exception.getLocalizedMessage());
+        }
+    }
+
+    private void parseLine(String string) throws PlantException{
+        String[] lineItems = string.split("\t");
+        if (lineItems.length != 5){
+            throw new PlantException("Input file format error: incorrect number of items on line. " +
+                    "Line is: "+string);
+        }
+        try {
+            //data order in supplied file seems to be:
+            //name, description, watering frequency, watering date, planted date
+            // ??
+            String plantName = lineItems[0].trim();
+            String plantDescription = lineItems[1].trim();
+            int freqWatering = Integer.parseInt(lineItems[2].trim());
+            LocalDate watering = LocalDate.parse(lineItems[3].trim());
+            LocalDate planted = LocalDate.parse(lineItems[4].trim());
+
+            this.addPlant(new Plant(plantName, plantDescription, planted, watering, freqWatering));
+
+        } catch (DateTimeParseException exc){
+            throw new PlantException("Could not read dates from file line: "+string
+                    +"\n"+exc.getLocalizedMessage());
+        } catch (NumberFormatException exc){
+            throw new PlantException("Could not parse watering frequency from file on line: "+string
+                    +"\n"+exc.getLocalizedMessage());
         }
     }
 }
