@@ -5,6 +5,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -103,5 +104,9 @@ public class PlantList {
             System.err.println("Could not write file "+filename+" in savetoFile.\n"
                     +exc.getLocalizedMessage());
         }
+    }
+
+    public void sortPlantList() {
+        Collections.sort(this.plantList, new PlantNameComparator());
     }
 }

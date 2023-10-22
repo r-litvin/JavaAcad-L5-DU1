@@ -1,8 +1,11 @@
 import com.engeto.DU5.Plant;
 import com.engeto.DU5.PlantException;
 import com.engeto.DU5.PlantList;
+import com.engeto.DU5.PlantNameComparator;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Java Academy Homework #5
@@ -13,6 +16,7 @@ import java.time.LocalDate;
  * task14: add two plants, remove one plant
  * task15: save plant list to file
  * task16: try loading the file back
+ * task17 & task18: add comparator for Plants so we can sort by name
  */
 
 public class Main {
@@ -28,6 +32,10 @@ public class Main {
         readPlantList.saveToFile("kvetiny-out.txt");
         //task16
         testtask16();
+        //task17 & task18
+        readPlantList.sortPlantList();
+        System.out.println("Watering status after sorting:");
+        printWateringStatus(readPlantList);
 
         System.out.println("End OK.");
     }
@@ -66,6 +74,7 @@ public class Main {
         System.out.println("Watering status:");
         readPlantList.getPlantList().stream().forEach(plant
                 -> System.out.println(plant.getWateringInfo()));
+        System.out.println("\n");
     }
 
     private static void testPlant01(PlantList plantList){
