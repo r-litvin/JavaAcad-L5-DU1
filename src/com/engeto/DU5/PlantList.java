@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlantList {
-    private List<Plant> plantList;
+    private List<Plant> plantList = new ArrayList<>();
 
-    public void PlantList(){
-        this.plantList = new ArrayList<>();
-    }
     public void PlantList(List<Plant> inputList){
         this.plantList.addAll(inputList);
     }
 
     public List<Plant> getPlantList(){
         return new ArrayList<>(this.plantList);
+    }
+
+    public int getNumberOfPlants(){
+        return this.plantList.size();
     }
 
     public void addPlant (Plant newPlant){
@@ -27,12 +28,17 @@ public class PlantList {
         }
         if (index > plantList.size()-1){
             throw new PlantException("getPlant error: index larger than number of plants in list! " +
-                    "\nRequired Plant No. "+index+1+ " but plantList only has "+ plantList.size()+ " items.");
+                    "\nRequired Plant No. "+index+ " but plantList only has "+ plantList.size()+ " items.");
         }
         return this.plantList.get(index);
     }
 
-    public void remove(Plant plant){
-        this.plantList.remove(plant);
+    public void remove(Plant plant) throws PlantException{
+        if (this.plantList.contains(plant)){
+            this.plantList.remove(plant);
+        } else {
+            throw new PlantException("Error removing Plant from list. Plant '"
+                    +plant+"' does not exist!");
+        }
     }
 }
