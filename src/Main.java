@@ -23,6 +23,8 @@ public class Main {
         testReadFromFile01(readPlantList); //tests reading from file in PlantList
         printWateringStatus(readPlantList); //task13
         testtask14(readPlantList, myTestPlants); //task14 code
+        //task15
+        readPlantList.saveToFile("kvetiny-out.txt");
 
         System.out.println("End OK.");
     }

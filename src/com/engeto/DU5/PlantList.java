@@ -1,8 +1,7 @@
 package com.engeto.DU5;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -94,6 +93,15 @@ public class PlantList {
     }
 
     public void saveToFile(String filename){
-
+        List<String> toPrint =
+                this.getPlantList().stream().map(Plant::stringToFile).toList();
+        try (PrintWriter outputWriter = new PrintWriter(new BufferedWriter(new FileWriter(filename)))){
+            for (String newLine : toPrint){
+                outputWriter.println(newLine);
+            }
+        } catch (IOException exc){
+            System.err.println("Could not write file "+filename+" in savetoFile.\n"
+                    +exc.getLocalizedMessage());
+        }
     }
 }

@@ -102,11 +102,14 @@ public class Plant {
     }
 
     public String stringToFile(){
+        //data order in supplied file seems to be:
+        //name, description, watering frequency, watering date, planted date
         String outputString;
         outputString = this.name+"\t";
         outputString += this.notes+"\t";
         outputString += this.frequencyOfWatering+"\t";
-        //outputString += this.
+        outputString += this.watering+"\t";
+        outputString += this.planted;
         return outputString;
     }
 
