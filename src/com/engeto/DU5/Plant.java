@@ -70,4 +70,19 @@ public class Plant {
         this.frequencyOfWatering = frequencyOfWatering;
     }
     //endregion
+
+    /**
+     * metodu getWateringInfo(), která vrátí
+     * název květiny,
+     * datum poslední zálivky a
+     * datum doporučené další zálivky.
+     * (Metoda vrátí textový řetězec, obsahující požadované informace.)
+     */
+    public String getWateringInfo(){
+        String output = "";
+        output += this.name + ", watered ";
+        output += this.watering + ", water again on ";
+        output += this.watering.plusDays(this.frequencyOfWatering);
+        return output;
+    }
 }
