@@ -4,27 +4,35 @@ import com.engeto.DU5.PlantList;
 
 import java.time.LocalDate;
 
+/**
+ * Java Academy Homework #5
+ * * Exceptions
+ * * reading & writing text files
+ *
+ * task13: write watering info on screen
+ */
+
 public class Main {
     public static void main(String[] args) {
         PlantList myTestPlants = new PlantList();
-        testPlant01(myTestPlants);
-        testPlantList01(myTestPlants);
+        testPlant01(myTestPlants); //tests Plant class
+        testPlantList01(myTestPlants); //tests PlantList class
         PlantList readPlantList = new PlantList();
-        String fileName = "kvetiny.txt";
-        try {
-            readPlantList.readFromFile(fileName);
-            System.out.println("readPlantList contains "+readPlantList.getNumberOfPlants()+" plants!");
-        } catch (PlantException exc){
-            System.err.println("Could not read file "+fileName+ "\n"+exc.getLocalizedMessage());
-        }
+        testReadFromFile01(readPlantList); //tests reading from file in PlantList
+        printWateringStatus(readPlantList); //task13
 
         System.out.println("End OK.");
-
-
     }
+
+    private static void printWateringStatus(PlantList readPlantList) {
+        System.out.println("\nWatering status:");
+        readPlantList.getPlantList().stream().forEach(plant
+                -> System.out.println(plant.getWateringInfo()));
+    }
+
     private static void testPlant01(PlantList plantList){
         //test that Plant class works
-        //add all test cases to PlantList variable for another test
+        //adds all test cases to PlantList variable for another test
         try {
             Plant firstPlant = new Plant("Bamboo"
                     , "from OBI"
@@ -67,7 +75,7 @@ public class Main {
         String myName = "testPlantList01";
         //getNumberOfPlants works?
         System.out.println(myName+": plantList has size: "+plantList.getNumberOfPlants());
-        // adding plants works, tested in testPlant01
+        // adding plants works, is tested in testPlant01
         int testIndex = 0;
         try {
             //getPlant works?
@@ -91,4 +99,15 @@ public class Main {
 
         System.out.println(myName+" done.");
     }
+
+    private static void testReadFromFile01(PlantList readPlantList) {
+        String fileName = "kvetiny.txt";
+        try {
+            readPlantList.readFromFile(fileName);
+            System.out.println("readPlantList contains "+ readPlantList.getNumberOfPlants()+" plants!");
+        } catch (PlantException exc){
+            System.err.println("Could not read file "+fileName+ "\n"+exc.getLocalizedMessage());
+        }
+    }
+
 }
