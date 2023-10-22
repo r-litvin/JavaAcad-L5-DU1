@@ -27,7 +27,7 @@ public class Main {
         testPlantList01(myTestPlants); //tests PlantList class
         //task12
         PlantList readPlantList = new PlantList();
-        testReadFromFile01(readPlantList); //tests reading from file in PlantList
+        readFromFile(readPlantList, "kvetiny.txt"); //tests reading from file in PlantList
         //task13
         printWateringStatus(readPlantList);
         //task14
@@ -44,41 +44,25 @@ public class Main {
         readPlantList.sortPlantListByWatering();
         System.out.println("Watering status after sorting by watering date");
         printWateringStatus(readPlantList);
-
         //task21
         testtask21();
         //task22
         testtask22();
 
-
         System.out.println("End OK.");
     }
-
-
 
     private static void testtask22() {
         System.out.println("\ntask22:");
         PlantList mixedPlantList = new PlantList();
-        String newFileName = "kvetiny-spatne-frekvence.txt";
-        try {
-            mixedPlantList.readFromFile(newFileName);
-        } catch (PlantException exc){
-            System.err.println("Could not load file "
-                    +newFileName+"\n"+exc.getLocalizedMessage() );
-        }
+        readFromFile(mixedPlantList, "kvetiny-spatne-frekvence.txt");
         printWateringStatus(mixedPlantList);
         System.out.println("End task22.\n");
     }
     private static void testtask21() {
         System.out.println("\ntask21:");
         PlantList mixedPlantList = new PlantList();
-        String newFileName = "kvetiny-spatne-datum.txt";
-        try {
-            mixedPlantList.readFromFile(newFileName);
-        } catch (PlantException exc){
-            System.err.println("Could not load file "
-                    +newFileName+"\n"+exc.getLocalizedMessage() );
-        }
+        readFromFile(mixedPlantList, "kvetiny-spatne-datum.txt");
         printWateringStatus(mixedPlantList);
         System.out.println("End task21.\n");
     }
@@ -86,13 +70,7 @@ public class Main {
     private static void testtask16() {
         System.out.println("\ntask16:");
         PlantList mixedPlantList = new PlantList();
-        String newFileName = "kvetiny-out.txt";
-        try {
-            mixedPlantList.readFromFile(newFileName);
-        } catch (PlantException exc){
-            System.err.println("Could not load file "
-                    +newFileName+"\n"+exc.getLocalizedMessage() );
-        }
+        readFromFile(mixedPlantList, "kvetiny-out.txt");
         printWateringStatus(mixedPlantList);
         System.out.println("End task16.");
     }
@@ -118,6 +96,15 @@ public class Main {
         readPlantList.getPlantList().stream().forEach(plant
                 -> System.out.println(plant.getWateringInfo()));
         System.out.println("\n");
+    }
+
+    private static void readFromFile(PlantList readPlantList, String fileName) {
+        try {
+            readPlantList.readFromFile(fileName);
+            System.out.println("PlantList from file '"+fileName+"' contains "+ readPlantList.getNumberOfPlants()+" plants!");
+        } catch (PlantException exc){
+            System.err.println("Could not read file '"+fileName+ "'\n"+exc.getLocalizedMessage());
+        }
     }
 
     private static void testPlant01(PlantList plantList){
@@ -190,14 +177,5 @@ public class Main {
         System.out.println(myName+" done.");
     }
 
-    private static void testReadFromFile01(PlantList readPlantList) {
-        String fileName = "kvetiny.txt";
-        try {
-            readPlantList.readFromFile(fileName);
-            System.out.println("readPlantList contains "+ readPlantList.getNumberOfPlants()+" plants!");
-        } catch (PlantException exc){
-            System.err.println("Could not read file "+fileName+ "\n"+exc.getLocalizedMessage());
-        }
-    }
 
 }
