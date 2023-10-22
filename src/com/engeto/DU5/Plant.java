@@ -8,17 +8,13 @@ public class Plant {
     private LocalDate planted;
     private LocalDate watering;
     private int frequencyOfWatering;
-    /**
-     * constructors:
-     * eden pro nastavení všech atributů
-     * druhý nastaví jako poznámku prázdný řetězec a datum poslední zálivky nastaví na dnešní datum.
-     * třetí nastaví totéž co druhý a navíc výchozí frekvenci zálivky na 7 dnů a datum zasazení na dnešní datum. (Uživatel tedy bude zadávat pouze název rostliny.)
-     */
-    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) throws PlantException {
+
+    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering)
+            throws PlantException {
         this.name = name;
         this.notes = notes;
         this.planted = planted;
-        this.watering = watering;
+        this.setWatering(watering);
         this.setFrequencyOfWatering(frequencyOfWatering);
 
     }
@@ -59,7 +55,12 @@ public class Plant {
         return watering;
     }
 
-    public void setWatering(LocalDate watering) {
+    public void setWatering(LocalDate watering) throws PlantException {
+        if (watering.isBefore(this.planted)) {
+            throw new PlantException("Error setting watering date: " +
+                    "cannot be earlier that planting date. \nWatering set to "
+                    + watering + " but planted date is " + this.planted);
+        }
         this.watering = watering;
     }
 

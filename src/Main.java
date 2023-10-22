@@ -37,6 +37,7 @@ public class Main {
             thirdPlant.setFrequencyOfWatering(6);
             System.out.println("Third plant info: "+thirdPlant.getWateringInfo());
             //thirdPlant.setFrequencyOfWatering(0); //works as of 2023-10-22
+            thirdPlant.setWatering(LocalDate.of(1982, 4,4));
 
         } catch (PlantException exception) {
             System.err.println("Error setting up Plants: "+exception.getLocalizedMessage());
