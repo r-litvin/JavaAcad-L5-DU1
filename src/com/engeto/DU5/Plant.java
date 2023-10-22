@@ -14,18 +14,19 @@ public class Plant {
      * druhý nastaví jako poznámku prázdný řetězec a datum poslední zálivky nastaví na dnešní datum.
      * třetí nastaví totéž co druhý a navíc výchozí frekvenci zálivky na 7 dnů a datum zasazení na dnešní datum. (Uživatel tedy bude zadávat pouze název rostliny.)
      */
-    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) {
+    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) throws PlantException {
         this.name = name;
         this.notes = notes;
         this.planted = planted;
         this.watering = watering;
-        this.frequencyOfWatering = frequencyOfWatering;
+        this.setFrequencyOfWatering(frequencyOfWatering);
+
     }
 
-    public Plant(String name, LocalDate planted, int frequencyOfWatering) {
+    public Plant(String name, LocalDate planted, int frequencyOfWatering)  throws PlantException {
         this(name, "", planted, LocalDate.now(), frequencyOfWatering);
     }
-    public Plant(String name){
+    public Plant(String name) throws PlantException{
         this(name, "", LocalDate.now(), LocalDate.now(), 7);
     }
 
@@ -66,8 +67,14 @@ public class Plant {
         return frequencyOfWatering;
     }
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) {
-        this.frequencyOfWatering = frequencyOfWatering;
+    public void setFrequencyOfWatering (int frequencyOfWatering) throws PlantException{
+        if (frequencyOfWatering > 0) {
+            this.frequencyOfWatering = frequencyOfWatering;
+        } else {
+            throw new PlantException("Watering frequency set to "+frequencyOfWatering
+                    +"! Must be greater than 0!");
+        }
+
     }
     //endregion
 
