@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * task13: write watering info on screen
  * task14: add two plants, remove one plant
  * task15: save plant list to file
+ * task16: try loading the file back
  */
 
 public class Main {
@@ -25,6 +26,18 @@ public class Main {
         testtask14(readPlantList, myTestPlants); //task14 code
         //task15
         readPlantList.saveToFile("kvetiny-out.txt");
+        //task16
+        System.out.println("\ntask16:");
+        PlantList mixedPlantList = new PlantList();
+        String newFileName = "kvetiny-out.txt";
+        try {
+            mixedPlantList.readFromFile(newFileName);
+        } catch (PlantException exc){
+            System.err.println("Could not load file "
+                    +newFileName+"\n"+exc.getLocalizedMessage() );
+        }
+        printWateringStatus(mixedPlantList);
+        System.out.println("End task16.");
 
         System.out.println("End OK.");
     }
@@ -46,7 +59,7 @@ public class Main {
     }
 
     private static void printWateringStatus(PlantList readPlantList) {
-        System.out.println("\nWatering status:");
+        System.out.println("Watering status:");
         readPlantList.getPlantList().stream().forEach(plant
                 -> System.out.println(plant.getWateringInfo()));
     }
