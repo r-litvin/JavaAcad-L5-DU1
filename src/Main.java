@@ -9,6 +9,7 @@ import java.time.LocalDate;
  * * Exceptions
  * * reading & writing text files
  *
+ * task12: read data from supplied file 'kvetiny.txt'
  * task13: write watering info on screen
  * task14: add two plants, remove one plant
  * task15: save plant list to file
@@ -24,10 +25,13 @@ public class Main {
         PlantList myTestPlants = new PlantList();
         testPlant01(myTestPlants); //tests Plant class
         testPlantList01(myTestPlants); //tests PlantList class
+        //task12
         PlantList readPlantList = new PlantList();
         testReadFromFile01(readPlantList); //tests reading from file in PlantList
-        printWateringStatus(readPlantList); //task13
-        testtask14(readPlantList, myTestPlants); //task14 code
+        //task13
+        printWateringStatus(readPlantList);
+        //task14
+        testtask14(readPlantList, myTestPlants);
         //task15
         readPlantList.saveToFile("kvetiny-out.txt");
         //task16
