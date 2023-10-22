@@ -15,6 +15,8 @@ import java.time.LocalDate;
  * task16: try loading the file back
  * task17 & task18: add comparator for Plants so we can sort by name
  * task19 & task20 - sort by watering status
+ * task21 - works correctly for damaged file 'kvetiny-spatne-datum.txt'
+ * task22 - works correctly for damaged file 'kvetiny-spatne-frekvence.txt'
  */
 
 public class Main {
@@ -39,7 +41,42 @@ public class Main {
         System.out.println("Watering status after sorting by watering date");
         printWateringStatus(readPlantList);
 
+        //task21
+        testtask21();
+        //task22
+        testtask22();
+
+
         System.out.println("End OK.");
+    }
+
+
+
+    private static void testtask22() {
+        System.out.println("\ntask22:");
+        PlantList mixedPlantList = new PlantList();
+        String newFileName = "kvetiny-spatne-frekvence.txt";
+        try {
+            mixedPlantList.readFromFile(newFileName);
+        } catch (PlantException exc){
+            System.err.println("Could not load file "
+                    +newFileName+"\n"+exc.getLocalizedMessage() );
+        }
+        printWateringStatus(mixedPlantList);
+        System.out.println("End task22.\n");
+    }
+    private static void testtask21() {
+        System.out.println("\ntask21:");
+        PlantList mixedPlantList = new PlantList();
+        String newFileName = "kvetiny-spatne-datum.txt";
+        try {
+            mixedPlantList.readFromFile(newFileName);
+        } catch (PlantException exc){
+            System.err.println("Could not load file "
+                    +newFileName+"\n"+exc.getLocalizedMessage() );
+        }
+        printWateringStatus(mixedPlantList);
+        System.out.println("End task21.\n");
     }
 
     private static void testtask16() {
