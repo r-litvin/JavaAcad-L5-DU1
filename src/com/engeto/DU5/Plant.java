@@ -101,4 +101,13 @@ public class Plant {
         return outputString;
     }
 
+    public String stringToFile(){
+        String outputString;
+        outputString = this.name+"\t";
+        outputString += this.notes+"\t";
+        outputString += this.frequencyOfWatering+"\t";
+        //outputString += this.
+        return outputString;
+    }
+
 }

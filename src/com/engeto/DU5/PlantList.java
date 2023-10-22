@@ -92,4 +92,8 @@ public class PlantList {
                     +"\n"+exc.getLocalizedMessage());
         }
     }
+
+    public void saveToFile(String filename){
+
+    }
 }

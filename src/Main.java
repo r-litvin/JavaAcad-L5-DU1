@@ -10,6 +10,8 @@ import java.time.LocalDate;
  * * reading & writing text files
  *
  * task13: write watering info on screen
+ * task14: add two plants, remove one plant
+ * task15: save plant list to file
  */
 
 public class Main {
@@ -20,8 +22,25 @@ public class Main {
         PlantList readPlantList = new PlantList();
         testReadFromFile01(readPlantList); //tests reading from file in PlantList
         printWateringStatus(readPlantList); //task13
+        testtask14(readPlantList, myTestPlants); //task14 code
 
         System.out.println("End OK.");
+    }
+
+    private static void testtask14(PlantList readPlantList, PlantList myTestPlants) {
+        //task14
+        try {
+            readPlantList.addPlant(myTestPlants.getPlant(1));
+            readPlantList.addPlant(myTestPlants.getPlant(0));
+        } catch (PlantException exc){
+            System.err.println("Error adding plants in testtask14: "+exc.getLocalizedMessage());
+        }
+        try {
+            readPlantList.remove(readPlantList.getPlant(0));
+        } catch (PlantException exception){
+            System.err.println("Error removing plant in testtask14: "+exception.getLocalizedMessage());
+        }
+
     }
 
     private static void printWateringStatus(PlantList readPlantList) {
