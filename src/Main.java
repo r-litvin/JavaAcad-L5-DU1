@@ -33,6 +33,7 @@ public class Main {
         thirdPlant.setNotes("Grows well in 2023");
         thirdPlant.setWatering(LocalDate.now());
         thirdPlant.setFrequencyOfWatering(6);
+        System.out.println("Third plant info: "+thirdPlant.getWateringInfo());
 
         System.out.println("TestPlant01 done.");
     }
