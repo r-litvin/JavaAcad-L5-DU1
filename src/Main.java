@@ -9,6 +9,15 @@ public class Main {
         PlantList myTestPlants = new PlantList();
         testPlant01(myTestPlants);
         testPlantList01(myTestPlants);
+        PlantList readPlantList = new PlantList();
+        String fileName = "kvetiny.txt";
+        try {
+            readPlantList.readFromFile(fileName);
+            System.out.println("readPlantList contains "+readPlantList.getNumberOfPlants()+" plants!");
+        } catch (PlantException exc){
+            System.err.println("Could not read file "+fileName+ "\n"+exc.getLocalizedMessage());
+        }
+
         System.out.println("End OK.");
 
 
@@ -74,7 +83,7 @@ public class Main {
             Plant testPlant = new Plant("rotten cactus",
                     "", LocalDate.of(1999, 9, 19),
                     LocalDate.now().minusDays(1), 14);
-            //plantList.addPlant(testPlant); //uncomment if you want to avoid the Exception
+            plantList.addPlant(testPlant); //comment out if you want to check the Exception
             plantList.remove(testPlant);
         } catch (PlantException exception){
             System.err.println("Error removing testPlant: "+exception.getLocalizedMessage());
