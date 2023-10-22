@@ -27,6 +27,12 @@ public class Main {
         //task15
         readPlantList.saveToFile("kvetiny-out.txt");
         //task16
+        testtask16();
+
+        System.out.println("End OK.");
+    }
+
+    private static void testtask16() {
         System.out.println("\ntask16:");
         PlantList mixedPlantList = new PlantList();
         String newFileName = "kvetiny-out.txt";
@@ -38,8 +44,6 @@ public class Main {
         }
         printWateringStatus(mixedPlantList);
         System.out.println("End task16.");
-
-        System.out.println("End OK.");
     }
 
     private static void testtask14(PlantList readPlantList, PlantList myTestPlants) {
