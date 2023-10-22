@@ -93,4 +93,12 @@ public class Plant {
         output += this.watering.plusDays(this.frequencyOfWatering);
         return output;
     }
+
+    public String toString(){
+        String outputString;
+        outputString = this.name + ", ";
+        outputString += "planted on "+this.planted;
+        return outputString;
+    }
+
 }
