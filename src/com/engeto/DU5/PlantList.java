@@ -41,7 +41,7 @@ public class PlantList {
         return this.plantList.get(index);
     }
 
-    public void remove(Plant plant) throws PlantException{
+    public void remove(Plant plant) throws PlantException{ //optionally write also remove(int index) ?
         if (this.plantList.contains(plant)){
             this.plantList.remove(plant);
         } else {
@@ -54,7 +54,7 @@ public class PlantList {
         try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(fileName)))) {
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
-                try {
+                try { //are nested try {} catch (){} a good idea?
                     parseLine(line);
                 } catch (PlantException exception){
                     throw new PlantException("Could not parse line: "+exception.getLocalizedMessage());
@@ -73,7 +73,7 @@ public class PlantList {
                     "Line is: "+string);
         }
         try {
-            //data order in supplied file seems to be:
+            //data order in the supplied file seems to be:
             //name, description, watering frequency, watering date, planted date
             // ??
             String plantName = lineItems[0].trim();
@@ -84,10 +84,10 @@ public class PlantList {
 
             this.addPlant(new Plant(plantName, plantDescription, planted, watering, freqWatering));
 
-        } catch (DateTimeParseException exc){
+        } catch (DateTimeParseException exc){ //from LocalDate.parse
             throw new PlantException("Could not read dates from file line: "+string
                     +"\n"+exc.getLocalizedMessage());
-        } catch (NumberFormatException exc){
+        } catch (NumberFormatException exc){ //from Integer.parseInt
             throw new PlantException("Could not parse watering frequency from file on line: "+string
                     +"\n"+exc.getLocalizedMessage());
         }
@@ -113,5 +113,6 @@ public class PlantList {
     public void sortPlantListByWatering(){
         Collections.sort(this.plantList, new PlantWateringDateComparator());
         //could implement if (){} else {} for reverse sorting here
+        //or write another method with reverse sort
     }
 }

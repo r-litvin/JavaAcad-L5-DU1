@@ -38,11 +38,11 @@ public class Main {
         testtask16();
         //task17 & task18
         readPlantList.sortPlantListByName();
-        System.out.println("Watering status after sorting by name:");
+        System.out.print("Watering status after sorting by name:");
         printWateringStatus(readPlantList);
         //task19 & task20 - sort by watering status
         readPlantList.sortPlantListByWatering();
-        System.out.println("Watering status after sorting by watering date");
+        System.out.print("\nWatering status after sorting by watering date");
         printWateringStatus(readPlantList);
         //task21
         testtask21();
@@ -53,14 +53,14 @@ public class Main {
     }
 
     private static void testtask22() {
-        System.out.println("\ntask22:");
+        System.out.print("\ntask22:");
         PlantList mixedPlantList = new PlantList();
         readFromFile(mixedPlantList, "kvetiny-spatne-frekvence.txt");
         printWateringStatus(mixedPlantList);
         System.out.println("End task22.\n");
     }
     private static void testtask21() {
-        System.out.println("\ntask21:");
+        System.out.print("\ntask21:");
         PlantList mixedPlantList = new PlantList();
         readFromFile(mixedPlantList, "kvetiny-spatne-datum.txt");
         printWateringStatus(mixedPlantList);
@@ -72,7 +72,7 @@ public class Main {
         PlantList mixedPlantList = new PlantList();
         readFromFile(mixedPlantList, "kvetiny-out.txt");
         printWateringStatus(mixedPlantList);
-        System.out.println("End task16.");
+        System.out.println("End task16.\n");
     }
 
     private static void testtask14(PlantList readPlantList, PlantList myTestPlants) {
@@ -92,10 +92,10 @@ public class Main {
     }
 
     private static void printWateringStatus(PlantList readPlantList) {
-        System.out.println("Watering status:");
+        System.out.println("\nWatering status:");
         readPlantList.getPlantList().stream().forEach(plant
                 -> System.out.println(plant.getWateringInfo()));
-        System.out.println("\n");
+        //System.out.println("\n");
     }
 
     private static void readFromFile(PlantList readPlantList, String fileName) {

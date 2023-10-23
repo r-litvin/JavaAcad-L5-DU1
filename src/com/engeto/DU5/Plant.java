@@ -79,14 +79,15 @@ public class Plant {
     }
     //endregion
 
-    /**
-     * metodu getWateringInfo(), která vrátí
-     * název květiny,
-     * datum poslední zálivky a
-     * datum doporučené další zálivky.
-     * (Metoda vrátí textový řetězec, obsahující požadované informace.)
-     */
+
     public String getWateringInfo(){
+        /**
+         * metodu getWateringInfo(), která vrátí
+         * název květiny,
+         * datum poslední zálivky a
+         * datum doporučené další zálivky.
+         * (Metoda vrátí textový řetězec, obsahující požadované informace.)
+         */
         String output = "";
         output += this.name + ", watered ";
         output += this.watering + ", water again on ";
