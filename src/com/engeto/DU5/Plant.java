@@ -23,7 +23,7 @@ public class Plant {
         this(name, "", planted, LocalDate.now(), frequencyOfWatering);
     }
     public Plant(String name) throws PlantException{
-        this(name, "", LocalDate.now(), LocalDate.now(), 7);
+        this(name, LocalDate.now(),7);
     }
 
     //region: setters and getters
