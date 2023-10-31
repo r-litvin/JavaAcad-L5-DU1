@@ -106,6 +106,17 @@ public class PlantList {
         }
     }
 
+    public void saveToFileUsingStream(String filename){
+        //List<String> toPrint =
+                //this.getPlantList().stream().map(Plant::stringToFile).toList();
+        try (PrintWriter outputWriter = new PrintWriter(new BufferedWriter(new FileWriter(filename)))){
+            this.getPlantList().stream().map(Plant::stringToFile).toList().forEach(outputWriter::println);
+        } catch (IOException exc) {
+            System.err.println("Could not write file " + filename + " in savetoFile.\n"
+                    + exc.getLocalizedMessage());
+        }
+    }
+
     public void sortPlantListByName() {
         Collections.sort(this.plantList, new PlantNameComparator());
     }

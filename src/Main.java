@@ -34,6 +34,7 @@ public class Main {
         testtask14(readPlantList, myTestPlants);
         //task15
         readPlantList.saveToFile("kvetiny-out.txt");
+        readPlantList.saveToFileUsingStream("kvetiny-out-stream.txt");
         //task16
         testtask16();
         //task17 & task18
