@@ -87,7 +87,6 @@ public class Plant {
      * (Metoda vrátí textový řetězec, obsahující požadované informace.)
      */
     public String getWateringInfo(){
-
         String output = "";
         output += this.name + ", watered ";
         output += this.watering + ", water again on ";
