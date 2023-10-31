@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class PlantList {
+public class PlantList{
     private List<Plant> plantList = new ArrayList<>();
 
     public PlantList(List<Plant> inputList){
@@ -121,9 +121,14 @@ public class PlantList {
         Collections.sort(this.plantList, new PlantNameComparator());
     }
 
+    public void sortPlantListByNameUsingComparable(){
+        Collections.sort(this.plantList);
+    }
+
     public void sortPlantListByWatering(){
         Collections.sort(this.plantList, new PlantWateringDateComparator());
         //could implement if (){} else {} for reverse sorting here
         //or write another method with reverse sort
     }
+
 }

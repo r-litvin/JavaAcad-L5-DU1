@@ -38,7 +38,8 @@ public class Main {
         //task16
         testtask16();
         //task17 & task18
-        readPlantList.sortPlantListByName();
+        //readPlantList.sortPlantListByName();
+        readPlantList.sortPlantListByNameUsingComparable();
         System.out.print("Watering status after sorting by name:");
         printWateringStatus(readPlantList);
         //task19 & task20 - sort by watering status
